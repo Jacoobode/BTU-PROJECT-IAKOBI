@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>BookFinder</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style (1).css">
+</head>
+
+<body>
+
+  <!-- ქუქის შეტყობინება -->
+  <div class="cookie-banner flex-col sm:flex-row text-center sm:text-left w-[90%] max-w-md" id="cookieBanner">
+    <p>ეს საიტი იყენებს Cookies-ს უკეთესი გამოცდილებისთვის.</p>
+    <button id="acceptCookies">მიღება</button>
+  </div>
+
+  <!-- HEADER -->
+  <header id="mainHeader">
+    <div class="header-inner">
+      <a class="logo" href="#hero" id="logoLink">BookFinder</a>
+
+      <div class="header-right">
+        <button aria-expanded="false" aria-label="რჩეულები" class="fav-toggle" id="favToggleBtn">
+          <span class="material-symbols-outlined">favorite</span>
+          <span class="fav-count" id="favCount">0</span>
+        </button>
+
+        <nav class="nav" id="mainNav">
+          <a href="#hero">მთავარი</a>
+          <a href="#search-section">ძიება</a>
+          <a href="#results-section">შედეგები</a>
+          <a href="#about">ჩვენ შესახებ</a>
+          <a href="#contact">კონტაქტი</a>
+        </nav>
+
+        <button aria-label="მენიუ" class="burger" id="burgerBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FAVORITES PANEL -->
+    <div class="fav-panel" id="favPanel">
+      <div class="fav-panel-header">
+        <h3>რჩეული წიგნები</h3>
+        <button aria-label="დახურვა" class="fav-panel-close" id="favPanelClose">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="fav-panel-list" id="favPanelList"></div>
+      <p class="fav-panel-empty" id="favPanelEmpty">რჩეულებში წიგნები ჯერ არ არის</p>
+    </div>
+  </header>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Open Library · 20M+ წიგნი</span>
+      <h1>იპოვე შენი შემდეგი <span class="highlight">წიგნი</span></h1>
+      <p>მილიონობით წიგნი ერთ ადგილას — მოძებნე ავტორით, სათაურით ან საკვანძო სიტყვით.</p>
+      <a class="btn-primary" href="#search-section">დაიწყე ძიება</a>
+    </div>
+  </section>
+
+  <!-- SECTION 2: SEARCH -->
+  <section class="search-section" id="search-section">
+    <div class="container text-center">
+      <span class="eyebrow">Open Library API</span>
+      <h2>წიგნის ძიება</h2>
+      <p class="section-sub">Open Library-ს მონაცემთა ბაზიდან</p>
+      <div class="search-box flex flex-col md:flex-row gap-4">
+        <input id="searchInput" placeholder="მაგ: Harry Potter ან J.K. Rowling..." type="text">
+        <select id="searchType">
+          <option value="title">სათაურით</option>
+          <option value="author">ავტორით</option>
+        </select>
+        <button class="btn-primary" id="searchBtn">ძიება</button>
+      </div>
+      <p class="error-msg" id="errorMsg" style="display:none;">გთხოვთ შეიყვანოთ საძიებო სიტყვა!</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: RESULTS -->
+  <section class="results-section" id="results-section">
+    <div class="container">
+      <h2 class="text-center" id="resultsTitle" style="display:none;">ძიების შედეგები</h2>
+      <div class="loading" id="loadingMsg" style="display:none;">
+        <span class="material-symbols-outlined"
+          style="vertical-align:middle; margin-right:8px;">progress_activity</span> იტვირთება...
+      </div>
+      <div class="books-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+        id="booksGrid"></div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <span class="material-symbols-outlined"
+          style="display:block; font-size:3rem; margin-bottom:1rem; opacity:.3;">search_off</span>
+        <p>წიგნი ვერ მოიძებნა. სცადეთ სხვა სიტყვა.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ABOUT -->
+  <section class="about-section reveal" id="about">
+    <div class="container">
+      <div class="text-center">
+        <span class="eyebrow">BookFinder</span>
+        <h2>ჩვენ შესახებ</h2>
+      </div>
+      <div class="about-grid grid-cols-1 md:grid-cols-3">
+        <div class="about-card">
+          <span class="material-symbols-outlined about-icon">auto_stories</span>
+          <h3>Open Library</h3>
+          <p>გამოვიყენებთ Open Library-ს უფასო API-ს, სადაც 20+ მილიონი წიგნია ხელმისაწვდომი.</p>
+        </div>
+        <div class="about-card">
+          <span class="material-symbols-outlined about-icon">search_insights</span>
+          <h3>სწრაფი ძიება</h3>
+          <p>წამში მოიძებნება ნებისმიერი წიგნი სათაურით ან ავტორის სახელით.</p>
+        </div>
+        <div class="about-card">
+          <span class="material-symbols-outlined about-icon">history_edu</span>
+          <h3>უფასო</h3>
+          <p>სერვისი სრულიად უფასოა. რეგისტრაცია საჭირო არ არის.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CONTACT -->
+  <section class="contact-section reveal" id="contact">
+    <div class="container">
+      <div class="text-center">
+        <span class="eyebrow">შეგვატყობინეთ</span>
+        <h2>კონტაქტი</h2>
+        <p class="section-sub">შეგვატყობინეთ თქვენი აზრი!</p>
+      </div>
+      <div class="contact-form">
+        <input id="contactName" placeholder="სახელი" type="text">
+        <input id="contactEmail" placeholder="ელ-ფოსტა" type="email">
+        <textarea id="contactMsg" placeholder="შეტყობინება..." rows="4"></textarea>
+        <button class="btn-primary" id="contactBtn">გაგზავნა</button>
+        <p class="success-msg" id="formSuccess"
+          style="display:none; text-align:center; margin-top:1rem; color:#7ddc8c; font-weight:500;">
+          <span class="material-symbols-outlined" style="vertical-align:middle; margin-right:4px;">check_circle</span>
+          გაგზავნილია! მადლობა.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2025 BookFinder — ყველა უფლება დაცულია</p>
+      <p style="margin-top:.5rem;">API: <a href="https://openlibrary.org/developers/api" target="_blank">Open
+          Library</a></p>
+    </div>
+  </footer>
+
+  <!-- Scroll to top ღილაკი -->
+  <button aria-label="ზემოთ" class="scroll-top" id="scrollTop">
+    <span class="material-symbols-outlined">north</span>
+  </button>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
