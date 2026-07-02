@@ -32,7 +32,7 @@ h3,
   padding: 0 1.5rem;
 }
 
-/* COOKIE BANNER */
+
 .cookie-banner {
   position: fixed;
   bottom: 20px;
@@ -70,7 +70,7 @@ h3,
   font-size: 0.875rem;
 }
 
-/* HEADER */
+
 header {
   position: fixed;
   top: 0;
@@ -133,7 +133,7 @@ header.scrolled {
   margin-left: 6px;
 }
 
-/* FAVORITES TOGGLE (header icon) */
+
 .fav-toggle {
   position: relative;
   display: flex;
@@ -166,7 +166,7 @@ header.scrolled {
   margin-left: 0;
 }
 
-/* FAVORITES DROPDOWN PANEL */
+
 .fav-panel {
   position: fixed;
   top: 80px;
@@ -321,7 +321,7 @@ header.scrolled {
   color: var(--primary);
 }
 
-/* BURGER */
+
 .burger {
   display: none;
   flex-direction: column;
@@ -400,7 +400,7 @@ header.scrolled {
   transform: translateY(-2px);
 }
 
-/* SECTIONS */
+
 section {
   padding: 8rem 0;
 }
@@ -416,7 +416,7 @@ h2 {
   color: var(--text-main);
 }
 
-/* SEARCH */
+
 .search-section {
   background: var(--surface-container-low);
 }
@@ -448,7 +448,7 @@ h2 {
   border: 1px solid var(--primary);
 }
 
-/* ბრაუზერის ავტომატური შევსების (autofill) თეთრი ფონის გასწორება */
+
 .search-box input:-webkit-autofill,
 .search-box input:-webkit-autofill:hover,
 .search-box input:-webkit-autofill:focus {
@@ -478,7 +478,7 @@ h2 {
   color: var(--text-main);
 }
 
-/* RESULTS */
+
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -584,7 +584,7 @@ h2 {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* ABOUT */
+
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -618,7 +618,7 @@ h2 {
   line-height: 1.6;
 }
 
-/* CONTACT */
+
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -657,7 +657,7 @@ h2 {
   transition: background-color 9999s ease-in-out 0s;
 }
 
-/* FOOTER */
+
 footer {
   padding: 4rem 0;
   background: #120d0a;
@@ -673,7 +673,7 @@ footer a {
   text-decoration: underline;
 }
 
-/* UTILS */
+
 .scroll-top {
   position: fixed;
   bottom: 30px;
@@ -727,14 +727,14 @@ footer a {
   color: var(--secondary);
 }
 
-/* RESPONSIVE: 1024px */
+
 @media (max-width: 1024px) {
   .books-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
-/* RESPONSIVE: 768px */
+
 @media (max-width: 768px) {
   .header-right {
     gap: 1rem;
@@ -801,7 +801,7 @@ footer a {
   }
 }
 
-/* RESPONSIVE: 480px */
+
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 2rem;
@@ -827,7 +827,7 @@ footer a {
   }
 }
 
-/* RESPONSIVE: 320px */
+
 @media (max-width: 320px) {
   .logo {
     font-size: 1.25rem;
