@@ -1,4 +1,3 @@
-// HEADER: scroll-ზე ფონის შეცვლა 
 const header = document.getElementById("mainHeader");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 50) {
@@ -8,7 +7,7 @@ window.addEventListener("scroll", function () {
   }
 });
 
-//  BURGER MENU 
+
 const burgerBtn = document.getElementById("burgerBtn");
 const mainNav = document.getElementById("mainNav");
 burgerBtn.addEventListener("click", function () {
@@ -22,7 +21,7 @@ mainNav.querySelectorAll("a").forEach(function (link) {
   });
 });
 
-//  ლოგოზე დაწკაპებისას მთავარ გვერდზე დაბრუნება 
+
 const logoLink = document.getElementById("logoLink");
 if (logoLink) {
   logoLink.addEventListener("click", function () {
@@ -32,8 +31,7 @@ if (logoLink) {
   });
 }
 
-//  COOKIES
-// (IIFE აღარ გვჭირდება, უბრალოდ პირდაპირ ვამოწმებთ ელემენტებს)
+
 const cookieBanner = document.getElementById('cookieBanner');
 const acceptCookiesBtn = document.getElementById('acceptCookies');
 
@@ -45,14 +43,14 @@ if (cookieBanner && acceptCookiesBtn) {
   acceptCookiesBtn.addEventListener('click', function () {
     cookieBanner.classList.remove('visible');
 
-    // ბანერი იმალება
+    
     setTimeout(function () {
       cookieBanner.classList.add('hidden');
     }, 500);
   });
 }
 
-//  SCROLL TO TOP 
+
 const scrollTopBtn = document.getElementById("scrollTop");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 300) {
@@ -65,7 +63,7 @@ scrollTopBtn.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-//  REVEAL ANIMATION 
+
 const revealItems = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(function (entries) {
   entries.forEach(function (entry) {
@@ -78,7 +76,7 @@ revealItems.forEach(function (item) {
   observer.observe(item);
 });
 
-// რჩეული წიგნები (localStorage) + ჩამოსაშლელი პანელი
+
 const favCountEl = document.getElementById("favCount");
 const favToggleBtn = document.getElementById("favToggleBtn");
 const favPanel = document.getElementById("favPanel");
@@ -105,7 +103,7 @@ function isFavorite(key) {
   return getFavorites().some(function (book) { return book.key === key; });
 }
 
-// bookData = { key, title, author, year, cover_i }
+
 function toggleFavorite(bookData, btnEl) {
   let favorites = getFavorites();
   const exists = favorites.some(function (book) { return book.key === bookData.key; });
@@ -130,7 +128,7 @@ function removeFavorite(key) {
   updateFavCount();
   renderFavPanel();
 
-  // თუ ეს წიგნი ეკრანზეც ჩანს, გულის ღილაკს ვხდით არააქტიურს
+ 
   const activeBtn = document.querySelector('.fav-btn[data-key="' + CSS.escape(key) + '"]');
   if (activeBtn) activeBtn.classList.remove("active");
 }
@@ -194,7 +192,7 @@ if (favToggleBtn && favPanel) {
 
   favPanelClose.addEventListener("click", closeFavPanel);
 
-  // პანელგარეთ დაწკაპებისას დახურვა
+ 
   document.addEventListener("click", function (e) {
     if (!favPanel.contains(e.target) && !favToggleBtn.contains(e.target)) {
       closeFavPanel();
@@ -202,10 +200,10 @@ if (favToggleBtn && favPanel) {
   });
 }
 
-// გვერდის ჩატვირთვისთანავე ვაჩვენებთ რამდენი წიგნია უკვე შენახული
+
 updateFavCount();
 
-//  BOOK SEARCH (FETCH / ASYNC-AWAIT) 
+
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 const searchType = document.getElementById("searchType");
@@ -266,7 +264,7 @@ function createBookCard(book) {
   const title = book.title || "სათაური უცნობია";
   const author = book.author_name ? book.author_name[0] : "ავტორი უცნობია";
   const year = book.first_publish_year || "—";
-  const favKey = title + " — " + author; // უნიკალური გასაღები ამ წიგნისთვის
+  const favKey = title + " — " + author; 
 
   const bookData = {
     key: favKey,
@@ -293,7 +291,7 @@ function createBookCard(book) {
     '<p class="book-desc">ჟანრები იტვირთება...</p>' +
     "</div>";
 
-  // ფავორიტის ღილაკის გამართვა
+  
   const favBtn = card.querySelector(".fav-btn");
   if (isFavorite(favKey)) {
     favBtn.classList.add("active");
@@ -302,14 +300,14 @@ function createBookCard(book) {
     toggleFavorite(bookData, favBtn);
   });
 
-  // წიგნის ჟანრების ცალკე ჩატვირთვა Open Library Works API-დან
+  
   const genreEl = card.querySelector(".book-desc");
   loadBookGenres(book.key, genreEl);
 
   return card;
 }
 
-// წიგნის ჟანრების ჩატვირთვა (Works API), რადგან search.json ჟანრებს არ აბრუნებს
+
 async function loadBookGenres(workKey, genreEl) {
   if (!workKey || !genreEl) {
     if (genreEl) genreEl.textContent = "ჟანრი უცნობია";
@@ -321,13 +319,12 @@ async function loadBookGenres(workKey, genreEl) {
     if (!response.ok) throw new Error("ჟანრების ჩატვირთვა ვერ მოხერხდა");
     const data = await response.json();
 
-    // subjects არის მასივი, მაგ: ["Fiction", "Mystery", "Detective"]
+   
     if (!data.subjects || data.subjects.length === 0) {
       genreEl.textContent = "ჟანრი უცნობია";
       return;
     }
 
-    // მხოლოდ პირველ 3 ჟანრს ვიღებთ, რომ ბარათზე ბევრი ტექსტი არ დაეტიოს
     const topGenres = data.subjects.slice(0, 3).join(", ");
     genreEl.textContent = topGenres;
   } catch (err) {
@@ -335,7 +332,6 @@ async function loadBookGenres(workKey, genreEl) {
   }
 }
 
-//  CONTACT FORM 
 const contactBtn = document.getElementById("contactBtn");
 const formSuccess = document.getElementById("formSuccess");
 contactBtn.addEventListener("click", function () {
