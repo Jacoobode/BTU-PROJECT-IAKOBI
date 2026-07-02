@@ -1,3 +1,4 @@
+// hederi
 const header = document.getElementById("mainHeader");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 50) {
@@ -7,7 +8,7 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
+// burger menu 
 const burgerBtn = document.getElementById("burgerBtn");
 const mainNav = document.getElementById("mainNav");
 burgerBtn.addEventListener("click", function () {
@@ -21,7 +22,7 @@ mainNav.querySelectorAll("a").forEach(function (link) {
   });
 });
 
-
+// logos daawkapeb mTavar gverdze dasabruneblad
 const logoLink = document.getElementById("logoLink");
 if (logoLink) {
   logoLink.addEventListener("click", function () {
@@ -31,7 +32,7 @@ if (logoLink) {
   });
 }
 
-
+// quqi baneri
 const cookieBanner = document.getElementById('cookieBanner');
 const acceptCookiesBtn = document.getElementById('acceptCookies');
 
@@ -50,7 +51,7 @@ if (cookieBanner && acceptCookiesBtn) {
   });
 }
 
-
+// magla asasqroli
 const scrollTopBtn = document.getElementById("scrollTop");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 300) {
@@ -63,7 +64,7 @@ scrollTopBtn.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-
+// gamochenis animacia smooth gadasvlistvis
 const revealItems = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(function (entries) {
   entries.forEach(function (entry) {
@@ -76,7 +77,7 @@ revealItems.forEach(function (item) {
   observer.observe(item);
 });
 
-
+// favoriti wignebi
 const favCountEl = document.getElementById("favCount");
 const favToggleBtn = document.getElementById("favToggleBtn");
 const favPanel = document.getElementById("favPanel");
@@ -203,7 +204,7 @@ if (favToggleBtn && favPanel) {
 
 updateFavCount();
 
-
+// buqserchi anu wiggnis dzebna API dan
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 const searchType = document.getElementById("searchType");
@@ -331,7 +332,7 @@ async function loadBookGenres(workKey, genreEl) {
     genreEl.textContent = "ჟანრი უცნობია";
   }
 }
-
+// feedbacki shesavsebi forma
 const contactBtn = document.getElementById("contactBtn");
 const formSuccess = document.getElementById("formSuccess");
 contactBtn.addEventListener("click", function () {
@@ -345,6 +346,8 @@ contactBtn.addEventListener("click", function () {
   }
 
   formSuccess.style.display = "block";
+
+  // velebis gasuptaveba
   document.getElementById("contactName").value = "";
   document.getElementById("contactEmail").value = "";
   document.getElementById("contactMsg").value = "";
